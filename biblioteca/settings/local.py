@@ -11,20 +11,20 @@ ALLOWED_HOSTS = []
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 # mysql
-"""
+
 DATABASES =  {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'empleado',
+        'NAME': 'libro_db',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306'
     }
 }
-"""
-# postgresql
 
+# postgresql
+"""
 DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -36,6 +36,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+"""
 
 """
 DATABASES = {
