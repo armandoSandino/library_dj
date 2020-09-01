@@ -15,7 +15,7 @@ class ListAutores(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(ListAutores, self).get_context_data(**kwargs)
-        context['titutlo'] = 'Los autores'
+        context['titulo'] = 'Los autores'
         return context
     
     def get_queryset(self):
