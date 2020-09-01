@@ -1,3 +1,11 @@
 <h2>
     {{titulo}}
 </h2>
+
+<ul >
+    
+    {% for item  in listAutores  %}
+        <li> {{item.nombre}} </li>
+    {% endfor %}
+        
+</ul>

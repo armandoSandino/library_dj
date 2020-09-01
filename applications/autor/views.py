@@ -19,8 +19,9 @@ class ListAutores(ListView):
         return context
     
     def get_queryset(self):
-        # queryset = super(ListAutores, self).get_queryset()
-        # queryset = queryset
-        return Autor.objects.all()
+        # Si no tenemos un Manager podemos usar Autor.objects.all() para obtener la lista de datos
+        # De otro modo intente con Manager
+        
+        return Autor.objects.listar_autores()
 
     
