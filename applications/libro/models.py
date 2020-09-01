@@ -24,9 +24,12 @@ class Categoria(models.Model):
         return self.nombre
 
 class Libro(models.Model):
+    # related_name, El nombre que se utilizará para la relación del objeto relacionado con este.
+    # https://docs.djangoproject.com/en/3.1/ref/models/fields/#django.db.models.ForeignKey.related_name
     categoria = models.ForeignKey(
         Categoria,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='categoria_libro'
     )
     autores = models.ManyToManyField(Autor)
     titulo = models.CharField(
