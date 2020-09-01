@@ -1,0 +1,23 @@
+<h2>
+    {{titulo}}
+</h2>
+<br>
+
+<form method="GET" action="" name="formLibro"> 
+    {% csrf_token %}
+    <input type="text" name="term" id="term" placeholder="ingrese el nombre a buscar">
+    <button type="submit"> 
+        Buscar
+    </button> 
+</form>
+<br>
+
+<ul>
+    
+    {% for item in listaLibro  %}
+        <li>
+            {{item.titulo}} - {{item.fecha}}
+        </li>
+    {% endfor %}
+        
+</ul>

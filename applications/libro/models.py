@@ -1,6 +1,8 @@
 from django.db import models
 # from local apps
 from applications.autor.models import Autor
+# Manager
+from .managers import LibroManager
 
 class Categoria(models.Model):
     """Model definition for Categoria."""
@@ -40,5 +42,8 @@ class Libro(models.Model):
         verbose_name = "Libro"
         verbose_name_plural="Libros"
     
+    # Le indicara a nuestro modelo que trabaje con este administrador
+    objects = LibroManager()
+
     def __str__(self):
         return self.titulo
