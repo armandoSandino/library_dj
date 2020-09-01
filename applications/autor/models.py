@@ -9,7 +9,7 @@ class Autor(models.Model):
     apellidos = models.CharField(
         'Apellidos',
         max_length=50,
-        blank=50
+        blank=False
     )
     nacionalidad = models.CharField(
         'Nacionalidad',
