@@ -31,5 +31,8 @@ class LibroAdmin(admin.ModelAdmin):
     # agregar filtro horizontal unicamente para las relaciones many to many
     filter_horizontal = ('autores',)
 
+admin.site.register(Libro, LibroAdmin)
+
+
 
 
