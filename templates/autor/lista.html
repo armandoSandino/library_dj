@@ -2,6 +2,14 @@
     {{titulo}}
 </h2>
 
+<form method="GET" action="" name="form">
+    {% csrf_token %}
+    <input type="text" name="term" id="term" placeholder="ingrese el nombre a buscar">
+    <button type="submit">
+        Buscar
+    </button>
+</form>
+
 <ul >
     
     {% for item  in listAutores  %}

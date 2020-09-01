@@ -21,7 +21,8 @@ class ListAutores(ListView):
     def get_queryset(self):
         # Si no tenemos un Manager podemos usar Autor.objects.all() para obtener la lista de datos
         # De otro modo intente con Manager
-        
-        return Autor.objects.listar_autores()
+        key = self.request.GET.get('term', '')
+
+        return Autor.objects.buscar_autor(key)
 
     
