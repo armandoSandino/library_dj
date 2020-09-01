@@ -23,6 +23,7 @@ class AutorManager(models.Manager):
         return self.filter(
             Q(nombre__icontains=autor_a_buscar) |  Q(apellidos__icontains=autor_a_buscar)
         )
+
     # Buscar autor tomando en cuenta su edad
     def buscar_author_determinado(self, termino ):
         # exclude excluye los registros expecificados en su clausula
@@ -31,4 +32,15 @@ class AutorManager(models.Manager):
         ).exclude(
             Q(edad__icontains=26) | Q(edad__icontains=33)
         )
+
+    def buscar_autor_x_edad(self, term ):
+        # Para la condicional and puedes utilizar __gt  y __lt
+        # order_by, ordena en base a determinados campos
+        res = self.filter(
+            edad__gt=25,
+            edad__lt=26
+        ).order_by('apellidos','nombre','id')
+
+        return res  
+
 
