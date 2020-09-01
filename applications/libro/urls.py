@@ -8,5 +8,10 @@ app_name = 'libro_app'
 
 urlpatterns = [
     path('libros/', views.ListaLibros.as_view(), name = 'list-book' ),
-    path('todos-libros-categoria/', views.ListarLibroXCategoria.as_view(), name ='list-book-category' )
+    path('todos-libros-categoria/', views.ListarLibroXCategoria.as_view(), name ='list-book-category' ),
+    path(
+        'libro/<int:pk>/',
+        views.LibroDetailView.as_view(),
+        name='detail-book'
+    )
 ]

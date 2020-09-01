@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # Generic views
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 # Models
 from .models import Categoria, Libro
 
@@ -48,3 +48,14 @@ class ListarLibroXCategoria(ListView):
             return Libro.objects.listar_libros()
     
 
+class LibroDetailView(DetailView):
+
+    model = Libro
+    template_name = 'libro/detalle.html'
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(LibroDetailView, self).get_context_data(**kwargs)
+        context['titulo'] = 'Detalle del libro'
+        return context
+    
