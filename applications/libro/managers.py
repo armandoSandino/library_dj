@@ -41,6 +41,14 @@ class LibroManager(models.Manager):
             categoria__id=id_categoria
         ).order_by('titulo') 
 
+    def agregar_autor_libro(self, id_libro, autor ):
+        # Obtenemos el libro
+        libro = self.get(id=id_libro)
+        # Agregamos datos, pero tambien podrias borrar al cambiar 'add' por 'remove'
+        libro.autores.add( autor )
+
+        return libro
+
 
 class CategoriaManager(models.Manager):
     # categoria_libro, es un campo de 'Categoria(modelo/tabla)' 
