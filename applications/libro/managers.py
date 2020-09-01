@@ -1,6 +1,8 @@
+
+import datetime
 # Models
 from django.db import models
-
+from django.db.models import Q
 
 class LibroManager(models.Manager):
 
@@ -17,3 +19,19 @@ class LibroManager(models.Manager):
             fecha__range=('2020-01-01', '2020-08-01')
         )
         return resultado
+
+    # Buscar libro por su titulo y rango de fechas
+    def buscar_libro_x_rango_fecha(self, termino, fecha_inicial, fecha_final ):
+
+        # Formatear la fechas al formato correcto
+        fe_inicial = datetime.datetime.strptime( fecha_final,"%Y-%m-%d").date()
+        fe_final = datetime.datetime.strptime( fecha_final, "%Y-%m-%d").date()
+
+        resultado = self.filter(
+            titulo__icontains=termino,
+            fecha__range=(fe_inicial, fecha_final)
+        )
+
+        return resultado
+
+

@@ -16,5 +16,15 @@ class ListaLibros(ListView):
         return context
 
     def get_queryset(self):
+        
         termino  = self.request.GET.get('term', '')
-        return Libro.objects.buscar_libro(termino)
+        fecha_inicial = self.request.GET.get('fechaInicial', '')
+        fecha_final =  self.request.GET.get('fechaFinal', '')
+
+        if fecha_inicial and fecha_final:
+            return Libro.objects.buscar_libro_x_rango_fecha(termino, fecha_inicial, fecha_final)
+        else:
+            return Libro.objects.buscar_libro(termino)
+
+
+        

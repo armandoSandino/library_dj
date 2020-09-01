@@ -5,7 +5,13 @@
 
 <form method="GET" action="" name="formLibro"> 
     {% csrf_token %}
+    
     <input type="text" name="term" id="term" placeholder="ingrese el nombre a buscar">
+    
+    <input type="date" name="fechaInicial" id="fechaInicial">
+
+    <input type="date" name="fechaFinal" id="fechaFinal">
+
     <button type="submit"> 
         Buscar
     </button> 
