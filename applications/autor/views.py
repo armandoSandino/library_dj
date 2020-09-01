@@ -23,6 +23,6 @@ class ListAutores(ListView):
         # De otro modo intente con Manager
         key = self.request.GET.get('term', '')
 
-        return Autor.objects.buscar_autor(key)
+        return Autor.objects.buscar_author_determinado(key)
 
     
