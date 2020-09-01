@@ -34,4 +34,11 @@ class LibroManager(models.Manager):
 
         return resultado
 
+    # Listar libros por categoria
+    def listar_libros_categoria(self, id_categoria ):
+        # 'categoria' es una llave foranea en Libro y 'id' es el identificador en la tabla Categoria
+        return self.filter(
+            categoria__id=id_categoria
+        ).order_by('titulo') 
+
 

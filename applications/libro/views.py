@@ -26,5 +26,25 @@ class ListaLibros(ListView):
         else:
             return Libro.objects.buscar_libro(termino)
 
+class ListarLibroXCategoria(ListView):
+    """ Mostrar libros por categoria """
 
+    template_name = 'libro/lista.html'
+    context_object_name = 'listaLibro'
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(ListarLibroXCategoria, self).get_context_data(**kwargs)
+        context['titulo'] = 'Todos los libros por categoria'
+        return context
+    
+    def get_queryset(self):
         
+        termino = self.request.GET.get('term', '')
+        
+        if termino:
+            return Libro.objects.listar_libros_categoria(termino)
+        else:
+            return Libro.objects.listar_libros()
+    
+

@@ -7,5 +7,6 @@ from . import views
 app_name = 'libro_app'
 
 urlpatterns = [
-    path('libros/', views.ListaLibros.as_view(), name = 'list-book' )
+    path('libros/', views.ListaLibros.as_view(), name = 'list-book' ),
+    path('todos-libros-categoria/', views.ListarLibroXCategoria.as_view(), name ='list-book-category' )
 ]
