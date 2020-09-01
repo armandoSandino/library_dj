@@ -1,5 +1,7 @@
 # Models
 from django.db import models 
+# Q Permitira realizar consultas condicionadas ( or, || )
+from django.db.models import Q
 
 class AutorManager(models.Manager):
     ''' Manager para el modelo Autor '''
@@ -15,3 +17,9 @@ class AutorManager(models.Manager):
             nombre__icontains= autor_a_buscar
         )
         return resultado
+    
+    def buscar_author_x_nombre_or_apellido(self, autor_a_buscar):
+        # Q funciona como un 'or' para las condicionales
+        return self.filter(
+            Q(nombre__icontains=autor_a_buscar) |  Q(apellidos__icontains=autor_a_buscar)
+        )
