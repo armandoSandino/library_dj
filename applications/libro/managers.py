@@ -42,3 +42,12 @@ class LibroManager(models.Manager):
         ).order_by('titulo') 
 
 
+class CategoriaManager(models.Manager):
+    # categoria_libro, es un campo de 'Categoria(modelo/tabla)' 
+    # proporcionado por el modelo 'Libro' mediante el atributo 'related_name'
+    # distinct(), nos permitira obtener registros no  repetidos
+    def categoria_por_autor(self, autor ):
+        return self.filter(
+            categoria_libro__autores__id=autor
+        ).distinct()
+

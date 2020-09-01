@@ -2,7 +2,7 @@ from django.db import models
 # from local apps
 from applications.autor.models import Autor
 # Manager
-from .managers import LibroManager
+from .managers import LibroManager, CategoriaManager
 
 class Categoria(models.Model):
     """Model definition for Categoria."""
@@ -18,6 +18,9 @@ class Categoria(models.Model):
 
         verbose_name = 'Categoria del libro'
         verbose_name_plural = 'Categoria de libros'
+    
+    # Le indicara a nuestro modelo que trabaje con este administrador
+    objects = CategoriaManager()
 
     def __str__(self):
         """Unicode representation of Categoria."""
