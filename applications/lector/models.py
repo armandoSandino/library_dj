@@ -26,9 +26,9 @@ class Lector(models.Model):
         verbose_name_plural = "Lectores"
 
     def __str__(self):
-        return self.Nombres + ' ' + self.apellidos
+        return self.nombres + ' ' + self.apellidos
 
-class Prestammo(models.Model):
+class Prestamo(models.Model):
 
     lector = models.ForeignKey(
         Lector,
