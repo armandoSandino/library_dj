@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
+# Archivo de configuracion
+from django.conf import settings
+# Para generar url de los archivos multimedia
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('', include('applications.autor.urls') ),
     re_path('', include('applications.libro.urls') )
-]
+] + static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

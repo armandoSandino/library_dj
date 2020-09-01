@@ -35,7 +35,7 @@ class Libro(models.Model):
         blank=False
     )
     fecha = models.DateField('Fecha de lanzamiento')
-    portada = models.ImageField(upload_to='portada', blank=False)
+    portada = models.ImageField(upload_to='libro', blank=False)
     visitas = models.PositiveIntegerField('Visitas', blank=False)
 
     class Meta:
