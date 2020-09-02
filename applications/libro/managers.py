@@ -2,7 +2,8 @@
 import datetime
 # Models
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Count
+
 
 class LibroManager(models.Manager):
 
@@ -59,3 +60,12 @@ class CategoriaManager(models.Manager):
             categoria_libro__autores__id=autor
         ).distinct()
 
+    # Los resúmenes por objeto se pueden generar utilizando la annotate() cláusula. 
+    # Cuando annotate() se especifica una cláusula, 
+    # cada objeto del QuerySetse anotará con los valores especificados.
+    # https://docs.djangoproject.com/en/3.1/topics/db/aggregation/#generating-aggregates-for-each-item-in-a-queryset
+    def listar_categoria_libros(self):
+        resultado = self.annotate(
+            num_libros = Count('categoria_libro')
+        )
+        return resultado
