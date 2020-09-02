@@ -33,6 +33,14 @@ class Prestamo(models.Model):
     # Le indicara a nuestro modelo que trabaje con este administrador
     objects = PrestamoManager()
 
+    # Reescribir la funcion 'save' luego que se guarde algun registro para que realicemos alguna operacion adicional
+    def save(self, *args, **kwargs):
+        # Actualizamos el valor de la existencia
+        self.libro.stock = self.libro.stock-1
+        self.libro.save()
+
+        super(Prestamo, self).save(*args, **kwargs)
+
     def __str__(self):
 
         return self.libro.titulo
