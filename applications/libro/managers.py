@@ -3,7 +3,7 @@ import datetime
 # Models
 from django.db import models
 from django.db.models import Q, Count
-
+from django.db.models.functions import Lower
 
 class LibroManager(models.Manager):
 
@@ -59,6 +59,17 @@ class LibroManager(models.Manager):
             numero_de_prestamos = Count('libro_prestamo')
         )
         return resultado
+
+    # Cantidad de veces que se presto un libro
+    def numeros_libros_prestados(self):
+
+        return self.values(
+            'libro'
+        ).annotate(
+            numero_de_veces_prestado=Count('libro_prestamo'),
+            titulo_del_libro=Lower('libro__titulo')
+        )
+
 
 
 class CategoriaManager(models.Manager):

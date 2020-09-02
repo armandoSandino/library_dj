@@ -1,6 +1,7 @@
 # Models
 from django.db import models
-from django.db.models import Avg, Sum
+from django.db.models import Avg, Sum, Count
+from django.db.models.functions import Lower
 
 class PrestamoManager(models.Manager):
 
@@ -15,3 +16,13 @@ class PrestamoManager(models.Manager):
         )
 
         return resultado
+    
+    # Cantidad de veces que se presto un libro
+    def numeros_libros_prestados(self):
+        # values, no agrupa los registros, en este caso agrupara los resultados de la clausula 'annotate'
+        return self.values(
+            'libro'
+        ).annotate(
+            numero_de_veces_prestado=Count('libro'),
+            titulo_del_libro=Lower('libro__titulo')
+        )
