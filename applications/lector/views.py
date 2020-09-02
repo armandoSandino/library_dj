@@ -2,12 +2,15 @@ from datetime import date
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 # Generic views
 from django.views.generic.edit import FormView
+from django.views.generic import TemplateView
+
 #Models
 from .models import Prestamo
 #Forms
-from .forms import PrestamoForm
+from .forms import PrestamoForm, MultiplePrestamoForm
 
 class RegistrarPrestamo(FormView):
 
@@ -54,8 +57,6 @@ class RegistrarPrestamo(FormView):
         context['titulo'] = 'Agregar prestamo'
         return context
     
-
-
 class AgregarPrestamo(FormView):
 
     template_name = 'lector/agregar_prestamo.html'
@@ -76,7 +77,7 @@ class AgregarPrestamo(FormView):
                 'fecha_prestamo': date.today()
             }
         )
-        
+
         if creado: # si se agrego el registro
             return super(AgregarPrestamo, self).form_valid(form)
         else:
@@ -88,3 +89,17 @@ class AgregarPrestamo(FormView):
         context['titulo'] = 'Agregar prestamo'
         return context
     
+class AgregarPrestamoMultiple(FormView):
+
+    template_name = 'lector/agregar_prestamo_multiple.html'
+    form_class = MultiplePrestamoForm
+    success_url = reverse_lazy('lector_app:success-operation')
+
+    def form_valid(self, form):
+
+        return super(AgregarPrestamoMultiple, self).form_valid(form)
+
+
+class Notifications(TemplateView):
+
+    template_name = 'lector/success.html'
