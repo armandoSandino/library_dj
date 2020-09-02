@@ -1,33 +1,17 @@
 from django.db import models
 # from local apps
+# Models
 from applications.libro.models import Libro
+from applications.autor.models import Persona
 # Managers
 from .managers import PrestamoManager
 
-class Lector(models.Model):
-    nombres = models.CharField(
-        'Nombres',
-        max_length=50,
-        blank=False
-    )
-    apellidos = models.CharField(
-        'Apellidos',
-        max_length=50,
-        blank=False
-    )
-    nacionalidad = models.CharField(
-        'Nacionalidad',
-        max_length=20,
-        blank=False
-    )
-    edad = models.PositiveIntegerField('Edad', blank=False, default=0)
+class Lector(Persona):
 
     class Meta:
         verbose_name= "Lector"
         verbose_name_plural = "Lectores"
-
-    def __str__(self):
-        return self.nombres + ' ' + self.apellidos
+        
 
 class Prestamo(models.Model):
 

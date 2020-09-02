@@ -2,7 +2,7 @@ from django.db import models
 # Managers
 from .managers import AutorManager
 
-class Autor(models.Model):
+class Persona(models.Model):
     nombres = models.CharField(
         'Nombres',
         max_length=50,
@@ -21,8 +21,20 @@ class Autor(models.Model):
     # Entero positivo, PositiveIntegerField
     edad = models.PositiveIntegerField('Edad', blank=False, default=0)
 
-    # Le indicara a nuestro modelo que trabaje con este administrador
-    objects = AutorManager()
+    class Meta:
+        # Le indicara al ORM de Django que este modelo sera una clase Abstracta de la cual extenderan otros modelos
+        # Por lo cual podemos indicarle que no se cree en la base de datos
+        abstract = True
 
     def __str__(self):
         return self.nombres + ' ' + self.apellidos
+
+class Autor(Persona):
+
+    class Meta:
+        verbose_name = 'El Autor'
+        verbose_name_plural = 'Los autores'
+
+    # Le indicara a nuestro modelo que trabaje con este administrador
+    objects = AutorManager()
+
