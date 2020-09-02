@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agregar prestamo </title>
+</head>
+<body>
+    <h2> 
+        {{titulo}}
+    </h2>
+    <br>
+
+    <form method="POST" name="formPrestamo" action="" autocomplete="off">
+        <!-- asegura el form con csrf_token-->
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+
+        <button type="submit" title="Agregar prestamo">
+            Agregar
+        </button>
+    </form>
+
+</body>
+</html>
