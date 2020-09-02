@@ -26,6 +26,16 @@ class Persona(models.Model):
             models.CheckConstraint(check=models.Q(edad__gte=18), name='edad_mayor_de_18')
         ]
 
+        # Le indicara al ORM de Django que este modelo sera una clase Abstracta de la cual extenderan otros modelos
+        # Por lo cual podemos indicarle que no se cree en la base de datos
+        # abstract = True
+
     def __str__(self):
         return self.full_name
+
+
+class Empleado(Persona):
+    
+    empleo = models.CharField('Empleo', max_length=50, blank=False)
+
 

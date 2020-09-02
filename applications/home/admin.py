@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Persona
+from .models import Persona, Empleado
 
 class PersonaAdmin(admin.ModelAdmin):
 
@@ -23,3 +23,4 @@ class PersonaAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(Persona, PersonaAdmin)
+admin.site.register(Empleado)
