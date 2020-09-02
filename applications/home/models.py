@@ -16,6 +16,15 @@ class Persona(models.Model):
         # Si no se especifica por defecto tomara el nombre de la aplicacion concatenado con el nombre del modelo
         # Ej. home_persona
         db_table = 'Mi_tabla_persona'
+        
+        # Evitar que se agregue registros con el mismo valor para un determinado campo mediante 'unique_together'
+        unique_together = ['pais', 'apelativo']
+
+        # Evitar que se agregue registros con la edad de 18
+        # El 'gte' significa mayor o igual
+        constraints = [
+            models.CheckConstraint(check=models.Q(edad__gte=18), name='edad_mayor_de_18')
+        ]
 
     def __str__(self):
         return self.full_name
