@@ -43,6 +43,8 @@ class Libro(models.Model):
     fecha = models.DateField('Fecha de lanzamiento')
     portada = models.ImageField(upload_to='libro', blank=False)
     visitas = models.PositiveIntegerField('Visitas', blank=False)
+    # Gestionar las existencias
+    stock = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name = "El Libro"
