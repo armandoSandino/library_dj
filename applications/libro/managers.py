@@ -49,6 +49,16 @@ class LibroManager(models.Manager):
         libro.autores.add( autor )
 
         return libro
+    
+    # libro_prestamo, es un campo de 'Libro(modelo/tabla)' 
+    # proporcionado por el modelo 'Prestamo' mediante el atributo 'related_name'
+    # https://docs.djangoproject.com/en/3.1/ref/models/querysets/#django.db.models.query.QuerySet.aggregate
+    def libros_num_prestamos(self):
+        # aggregate, nos devolvera un diccionario de datos, {'numero_de_prestamos': 1}
+        resultado  = self.aggregate(
+            numero_de_prestamos = Count('libro_prestamo')
+        )
+        return resultado
 
 
 class CategoriaManager(models.Manager):
@@ -62,10 +72,11 @@ class CategoriaManager(models.Manager):
 
     # Los resúmenes por objeto se pueden generar utilizando la annotate() cláusula. 
     # Cuando annotate() se especifica una cláusula, 
-    # cada objeto del QuerySetse anotará con los valores especificados.
-    # https://docs.djangoproject.com/en/3.1/topics/db/aggregation/#generating-aggregates-for-each-item-in-a-queryset
+    # cada objeto del QuerySetse anotará con los valores especificados
+    # https://docs.djangoproject.com/en/3.1/ref/models/querysets/#django.db.models.query.QuerySet.annotate
     def listar_categoria_libros(self):
         resultado = self.annotate(
             num_libros = Count('categoria_libro')
         )
         return resultado
+
