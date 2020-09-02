@@ -1,7 +1,8 @@
 from django.db import models
 # from local apps
 from applications.libro.models import Libro
-
+# Managers
+from .managers import PrestamoManager
 
 class Lector(models.Model):
     nombres = models.CharField(
@@ -45,6 +46,8 @@ class Prestamo(models.Model):
         null = True
     )
     devuelto = models.BooleanField()
+    # Le indicara a nuestro modelo que trabaje con este administrador
+    objects = PrestamoManager()
 
     def __str__(self):
 
