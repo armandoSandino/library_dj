@@ -24,7 +24,7 @@ DATABASES =  {
 }
 
 # postgresql
-"""
+'''
 DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -32,11 +32,11 @@ DATABASES = {
         'NAME': 'libro_db',
         'USER': 'armando',
         'PASSWORD': 'sandino',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-"""
+'''
 
 """
 DATABASES = {

@@ -45,8 +45,9 @@ class Libro(models.Model):
     visitas = models.PositiveIntegerField('Visitas', blank=False)
 
     class Meta:
-        verbose_name = "Libro"
-        verbose_name_plural="Libros"
+        verbose_name = "El Libro"
+        verbose_name_plural="Los Libros"
+        ordering = ['titulo', 'fecha']
     
     # Le indicara a nuestro modelo que trabaje con este administrador
     objects = LibroManager()
