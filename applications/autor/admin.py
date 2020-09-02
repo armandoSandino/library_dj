@@ -9,7 +9,7 @@ class AutorAdmin(admin.ModelAdmin):
 
     list_display = (
         'id',
-        'nombre',
+        'nombres',
         'apellidos',
         'full_name',
         'nacionalidad',
@@ -17,16 +17,16 @@ class AutorAdmin(admin.ModelAdmin):
     )
     # agregar valor al campo que no existe en mi modelo 'full_name'
     def full_name(self, obj ):
-        return obj.nombre + ' ' + obj.apellidos
+        return obj.nombres + ' ' + obj.apellidos
 
     # agregar/hablitar filtros para los campos
     list_filter = ('edad','nacionalidad')
     # raw_id_fields = ('',)
     # readonly_fields = ('',)
     # agregar/habilitar buscador, puede especificar los campos por los que buscar
-    search_fields = ('nombre','apellidos','nacionalidad')
+    search_fields = ('nombres','apellidos','nacionalidad')
     # date_hierarchy = ''
-    ordering = ('nombre',)
+    ordering = ('nombres',)
 
 
 admin.site.register(Autor, AutorAdmin)

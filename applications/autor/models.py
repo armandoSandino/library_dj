@@ -3,8 +3,8 @@ from django.db import models
 from .managers import AutorManager
 
 class Autor(models.Model):
-    nombre = models.CharField(
-        'Nombre',
+    nombres = models.CharField(
+        'Nombres',
         max_length=50,
         blank=False
     )
@@ -15,14 +15,14 @@ class Autor(models.Model):
     )
     nacionalidad = models.CharField(
         'Nacionalidad',
-        max_length=30,
+        max_length=20,
         blank=False
     )
     # Entero positivo, PositiveIntegerField
-    edad = models.PositiveIntegerField('Edad',blank=False)
+    edad = models.PositiveIntegerField('Edad', blank=False, default=0)
 
     # Le indicara a nuestro modelo que trabaje con este administrador
     objects = AutorManager()
 
     def __str__(self):
-        return self.nombre + ' ' + self.apellidos
+        return self.nombres + ' ' + self.apellidos

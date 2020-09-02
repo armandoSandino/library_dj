@@ -14,7 +14,7 @@ class AutorManager(models.Manager):
     def buscar_autor(self, autor_a_buscar):
         # Recurde que el __icontains busca conincidencias( like ) en un campo
         resultado = self.filter(
-            nombre__icontains= autor_a_buscar
+            nombres__icontains= autor_a_buscar
         )
         return resultado
     
@@ -28,7 +28,7 @@ class AutorManager(models.Manager):
     def buscar_author_determinado(self, termino ):
         # exclude excluye los registros expecificados en su clausula
         return self.filter(
-            nombre__icontains = termino
+            nombres__icontains = termino
         ).exclude(
             Q(edad__icontains=26) | Q(edad__icontains=33)
         )
@@ -39,7 +39,7 @@ class AutorManager(models.Manager):
         res = self.filter(
             edad__gt=25,
             edad__lt=26
-        ).order_by('apellidos','nombre','id')
+        ).order_by('apellidos','nombres','id')
 
         return res  
 
