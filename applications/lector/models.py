@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_delete
 # from local apps
 # Models
 from applications.libro.models import Libro
@@ -44,3 +45,17 @@ class Prestamo(models.Model):
     def __str__(self):
 
         return self.libro.titulo
+
+# sender, donde se enviara/ejecutara la funcion
+# instance, instancia en la que se esta trabajando
+def actualizar_stock_de_libros(sender, instance, **kwargs):
+
+    # Obtener el libro  y actualizamos su stock
+    instance.libro.stock = instance.libro.stock+1
+    # Guardamos los cambios
+    instance.libro.save()
+
+# Enviamos la señal cuando se intente borrar un libro
+post_delete.connect( actualizar_stock_de_libros, sender=Prestamo )
+
+
