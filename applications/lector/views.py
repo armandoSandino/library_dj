@@ -92,10 +92,28 @@ class AgregarPrestamo(FormView):
 class AgregarPrestamoMultiple(FormView):
 
     template_name = 'lector/agregar_prestamo_multiple.html'
+    # Formulario con el que trabajamos
     form_class = MultiplePrestamoForm
+    # Ruta de redireccion
     success_url = reverse_lazy('lector_app:success-operation')
 
     def form_valid(self, form):
+        # Recolectar lo que se envia desde el form en el template
+        
+        lista_prestamos = []
+
+        for item in form.cleaned_data['libros']: # recorremos los libros seleccionados
+            un_libro = Prestamo(
+                lector=form.cleaned_data['lector'],
+                libro=item,
+                fecha_prestamo= date.today(),
+                devuelto=False
+            ) 
+            lista_prestamos.append(un_libro)
+        
+        # Registramos la lista de libros en el modelo prestamo
+        Prestamo.objects.bulk_create( lista_prestamos )
+
 
         return super(AgregarPrestamoMultiple, self).form_valid(form)
 
