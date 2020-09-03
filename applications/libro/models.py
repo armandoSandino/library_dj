@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_save
+# apps de terceros
+from PIL import Image
 # from local apps
 from applications.autor.models import Autor
 # Manager
@@ -56,3 +59,17 @@ class Libro(models.Model):
 
     def __str__(self):
         return self.titulo
+
+# sender, donde se enviara/ejecutara la funcion
+# instance, instancia en la que se esta trabajando
+def optimize_image(sender, instance, **kwargs ):
+    print('instance....', instance)
+    # Si se cargo un imagen la optimizara
+    if instance.portada:
+        #Obtenemos la imagen
+        portada = Image.open( instance.portada.path )
+        # la guardamos optmizada
+        portada.save(instance.portada.path, quality=20, optimize=True)
+
+# Se invocara antes que se guarde un registro, en este punto optmizaremos la imagen a almacenar
+post_save.connect(optimize_image, sender=Libro)
